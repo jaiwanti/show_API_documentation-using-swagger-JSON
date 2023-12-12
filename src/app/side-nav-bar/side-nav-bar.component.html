@@ -1,0 +1,143 @@
+<!-- <nav>
+
+    <ul>
+      <li *ngFor="let path of swaggerData">
+        <a>{{ swaggerData.tags }}</a>
+      </li>
+    </ul>
+  </nav>
+  <div>
+    {{this.swaggerData.tags}}
+  
+  </div> -->
+  <!-- <div *ngFor="let item of swaggerData">
+    asdfasdf
+    <a>{{ item }}</a>
+  </div> -->
+  <!-- <nav>
+    <ul>
+      <li *ngFor="let item of  ">
+        <a>{{ swaggerData.tags }}</a>
+      </li>
+    </ul>
+  </nav> -->
+  
+  
+  <!-- <div class="sidebar">
+    <ul>
+      <li *ngFor="let tags of sidebarItems">
+        {{ swaggerData.tags }}
+        <ul>
+          <li *ngFor="let tag of item.tags">
+            {{ swaggerData.operationId }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div> -->
+  
+  <!-- <div *ngIf="swaggerData">
+    <div *ngFor="let path of (swaggerData.tags)">
+      {{swaggerData.tags}}
+  
+      </div>
+    </div>
+  </div> -->
+
+
+  <!-- <div class="container-fluid">
+    <div class="row">
+      <div
+        class="col-3 collapse show d-md-flex bg-light pt-2 pl-0 min-vh-100"
+        id="sidebar"
+      >
+        <div class="p-2">
+          
+            <li class="nav-item fs-6">
+             
+              <ul *ngFor="let item1 of dataList; let j = index">
+                <li class="nav-item fs-6">
+                  {{ item1.tags }}
+                  <ul *ngFor="let item2 of dataList; let k = index">
+                    <li class="nav-item fs-6" >
+                      {{ item2.operationId }}
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div> -->
+  <!-- <div >
+    {{this.swaggerData.tags}}
+  
+  </div>
+  <div *ngFor="let swaggerData of menuItems">
+    <a [routerLink]="swaggerData.path">{{ swaggerData.operationId }}</a>
+  </div> -->
+
+  <!-- <div *ngFor="let item of swaggerData">
+    <div>{{ item.name }}</div>
+    <ul>
+      <li *ngFor="let child of item.children">
+        <a [routerLink]="['/', child.path]">{{ child.operationId }}</a>
+      </li>
+    </ul>
+  </div> -->
+
+  <!-- <div *ngFor="let item of swaggerData">
+    <div>{{ item.tags }}</div>
+    <ul>
+      <li *ngFor="let child of item.children">
+        <a [routerLink]="['/', child.path]">{{ child.operationId }}</a>
+      </li>
+    </ul>
+  </div> -->
+
+
+  <!-- <div *ngFor="let item of swaggerData">
+    <div>{{ item.name }}</div>
+    <ul>
+      <li *ngFor="let child of item.children">
+        <a [routerLink]="['/', child.path]">{{ child.operationId }}</a>
+      </li>
+    </ul>
+  </div> -->
+  
+  <mat-divider></mat-divider>
+  <nav class="navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Theneo</a>
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Theneo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav mr-auto" *ngFor="let item of swaggerData">
+            <li class="nav-item active" ><a class="nav-link" href="#">{{ item.name }}</a>
+                
+            </li>
+            <li *ngFor="let child of item.children">
+                <a class="nav-link" href="#" >{{ child.operationId }}</a>
+              </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+  
+  

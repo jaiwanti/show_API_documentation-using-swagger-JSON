@@ -1,0 +1,2481 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "V2",
+    "title": "Datasoft Rest API V2 Documentation"
+  },
+  "host": "apisandbox.astoncm.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "Access Create Token",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter the API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "",
+            "x-examples": {
+              "example-1": {
+                "": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            },
+            "examples": {
+              "200": {
+                "status": true,
+                "data": {
+                  "access_token": "dwEvTWOU0h6ApeIerJiVIj4y6y-gbPMsRd4ylQSx9GK4Vz_GaVBLfTx1yEhioQpj59Hn1PvGfXZAj-O7yO4MeER_u5A4c_VG1RVGhjn5qkiw_kQ7shg9Iqa6gWhFRlXnZ6__Cd9o0-uNrpV2k_Xu-DfiZv3eL10pmlladFtZ1HXFfpzCmYbIcQGbyTdlqut0aO3FA8Wv-qrRPZNi9l3Bm_k4fG_Aonj3xb79pN-nK8pDNa-lsox_cM8He1knpQ5ZcchY6SI6Syiyk9sAqUdQtB7_inDxIIHy80ccKYgdT3Q6oI7RY7rI1ELutbboInh6gojNywmb1NOarPzmkRJymj8MqAIhBERyYCstIrBdiXucQK79aQZXLksihi9Fh5k3lUhYf237lXkjaWGIK0TXpKOZkywYY6VtAu1xtlwWj8KBcJKnh1YZpVejV3HSFRoA",
+                  "refresh_token": "AoL9qM2m0ajPMWabr_SqhBZuV5IZ0amf95hTe0m_htkGJlAWKLsbmXUCXl9U7xr7iMqZ0DmO3vqFVVGFrrGwmMvcPxBBkzWvtLotkthesY9Gk4DWm1CIsphE64c5ZP3EAx4TBpn2GMg_zgmXSgV8wE-4b66wRqkc8VWyEWiTgGk6kObPOZMShEIUZzMrT2JUqRoYfrQXS7xgPX3UCF3AhcI_C3JubILpe_jRCvdfa-f5Dd5n9Dixz0uqMC6xvZjenI0Sk3AvyNi8ava0vYfIZwGYf9kCC7qkrz65Gp1-qzHONWFxBq7R-RZkLu8p3ZC8Zm8eWharDgx_Wr3xdt6Vnr8DVwnM0T_9evNJNpn3jfri9lREPaJAOXL2uuUoofjbTAX0RkhuL4_VbNFVGzEWz7DGPnr8HD7qtakvr7Ggi1MfWQqMB-Y4sfu9Q5CE80sI",
+                  "token_type": "bearer",
+                  "expires_in": 86399,
+                  "user_id": 1,
+                  "user_name": "sa",
+                  "issued": "2023-11-27T06:03:30Z",
+                  "expires": "2023-11-28T06:03:30Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "boolean"
+                },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "target": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            },
+            "examples": {
+              "400": {
+                "status": false,
+                "error": {
+                  "code": 1131,
+                  "message": "Incorrect combination of customer ID,Username and Password. Please try again.",
+                  "target": "User"
+                }
+              },
+              "400-2": {
+                "status": false,
+                "error": {
+                  "code": 9250,
+                  "message": "Authorization has been denied for this request.",
+                  "target": "User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Accounts": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account Get Accounts",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Account/Details": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account Get AccountDetails",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "from_date",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "to_date",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "ent_act_id",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            },
+            "examples": {
+              "example-1": {}
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Account/Transfer": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account Create Transfer",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded",
+          "application/xml",
+          "text/xml"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateTransfer"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Deal/PurposeOfPayments": {
+      "get": {
+        "tags": [
+          "Deal"
+        ],
+        "summary": "This method fetches the list of Purpose Of Payment records",
+        "description": "Click 'Try it Out' to update the Authentication Token and then click 'Execute'",
+        "operationId": "Deal Purpose Of Payments",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Trade": {
+      "post": {
+        "tags": [
+          "Deal"
+        ],
+        "operationId": "Deal Create Trade",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded",
+          "application/xml",
+          "text/xml"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PlaceTrade"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Trades": {
+      "get": {
+        "tags": [
+          "Deal"
+        ],
+        "operationId": "Deal Get Trades",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/PaymentWithTradeId": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "Payment Create Payment With TransId",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded",
+          "application/xml",
+          "text/xml"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreatePaymentWithTranstion"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/PaymentWithoutTradeId": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "Payment Create Payment Without TransId",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded",
+          "application/xml",
+          "text/xml"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreatePaymentWithoutTransaction"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Payments": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "This method fetches the all Payments records",
+        "description": "Click 'Try it Out' enter the Authentication Token and then click 'Execute'",
+        "operationId": "Payment Get Payments",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "trade_id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Funding/Link": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "Payment Get Funding Link",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "payment_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "batch_payment_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Funding/Status": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "operationId": "Payment Get Funding Status",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "payment_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "batch_payment_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Quote": {
+      "get": {
+        "tags": [
+          "Rate"
+        ],
+        "operationId": "Rate Get Quote",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "value_date",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "buy_currency",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sell_currency",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fixed_side",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Beneficiary": {
+      "get": {
+        "tags": [
+          "Wire"
+        ],
+        "operationId": "Wire Get Beneficiary",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "beneficiary_id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Wire"
+        ],
+        "summary": "This method updates the given Wire Template record",
+        "description": "Click 'Try it Out' to update the Input Parameters  and then click 'Execute'",
+        "operationId": "Wire Update Beneficiaries",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded",
+          "application/xml",
+          "text/xml"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Below is the Example Value and Model for updating the wire template",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateBeneficiaries"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Wire"
+        ],
+        "summary": "This method creates a Beneficaries Template record",
+        "description": "Click 'Try it Out' to update the Input Parameters and then click 'Execute'",
+        "operationId": "Wire Create Beneficiaries",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/x-www-form-urlencoded",
+          "application/xml",
+          "text/xml"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "body",
+            "description": "Below is the Example Value and Model for creating the wire template",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateBeneficiaries"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Wire"
+        ],
+        "summary": "This method deletes the given Wire Template record",
+        "description": "Click 'Try it Out' to update the Input Parameters and then click 'Execute'",
+        "operationId": "Wire Delete Beneficiaries",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "beneficiary_id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    },
+    "/V2/EU/Beneficiaries": {
+      "get": {
+        "tags": [
+          "Wire"
+        ],
+        "operationId": "Wire Get Beneficiaries",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter the keyword 'Bearer' followed by the generated Access Token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "Enter your API Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "PID",
+            "in": "header",
+            "description": "Enter the portal Id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Hmac-Auth",
+            "in": "header",
+            "description": "X Hmac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "LangCode",
+            "in": "header",
+            "description": "Enter the Language Code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Enter the available operators with input parameters to filter the output:\n\n**Comparison Operators**: eq (Equal to), ne  (Not Equal To), gt (Greater Than), ge (Greater than or Equal), lt (Less Then or Equal), notin (Not in), In, Like\n\n**Logical Operators**: AND, OR\n\n**Grouping Operators**: ()",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Enter the sort clause (asc or desc) with input parameters to sort the output",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DSOutput"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DSOutput": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean"
+        },
+        "data": {
+          "description": "Populates the Ouput Response if the Status is True",
+          "type": "object"
+        },
+        "code": {
+          "format": "int32",
+          "description": "Gives the Error Code",
+          "type": "integer"
+        },
+        "message": {
+          "description": "Gives the Message defining the error",
+          "type": "string"
+        },
+        "messages": {
+          "description": "Gives the Message defining the error",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "error": {
+          "$ref": "#/definitions/Error"
+        },
+        "paging": {
+          "$ref": "#/definitions/Paging"
+        },
+        "additional_codes": {
+          "type": "string"
+        }
+      },
+      "x-examples": {
+        "example-1": {
+          "status": true,
+          "data": {},
+          "code": 0,
+          "message": "string",
+          "messages": [
+            "string"
+          ],
+          "error": {
+            "code": 0,
+            "message": "string",
+            "target": "string",
+            "details": [
+              {
+                "code": 0,
+                "target": "string",
+                "message": "string"
+              }
+            ]
+          },
+          "paging": {
+            "page_number": 0,
+            "page_size": 0,
+            "page_from": 0,
+            "page_to": 0,
+            "record_count": 0
+          },
+          "additional_codes": "string"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "format": "int32",
+          "description": "Gives the Error Code",
+          "type": "integer"
+        },
+        "message": {
+          "description": "Gives the Message defining the error",
+          "type": "string"
+        },
+        "target": {
+          "description": "Gives the Target Section of the error",
+          "type": "string"
+        },
+        "details": {
+          "description": "Error Details",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InnerError"
+          }
+        }
+      }
+    },
+    "Paging": {
+      "type": "object",
+      "properties": {
+        "page_number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "page_size": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "page_from": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "page_to": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "record_count": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "InnerError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "format": "int32",
+          "description": "Gives the Error Code",
+          "type": "integer"
+        },
+        "target": {
+          "description": "Defines the Target Section of the error",
+          "type": "string"
+        },
+        "message": {
+          "description": "Gives the Message defining the error",
+          "type": "string"
+        }
+      }
+    },
+    "CreateTransfer": {
+      "required": [
+        "transfer"
+      ],
+      "type": "object",
+      "properties": {
+        "transfer": {
+          "$ref": "#/definitions/PaymentForTransfer"
+        },
+        "custom_audit_field": {
+          "$ref": "#/definitions/CustomAuditField"
+        }
+      }
+    },
+    "PaymentForTransfer": {
+      "required": [
+        "currency",
+        "amount",
+        "value_date",
+        "source_account_id",
+        "destination_account_id"
+      ],
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "value_date": {
+          "type": "string"
+        },
+        "internal_remarks": {
+          "type": "string"
+        },
+        "source_account_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "destination_account_id": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "CustomAuditField": {
+      "type": "object",
+      "properties": {
+        "created_by": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "created_on": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updated_by": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updated_on": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "PlaceTrade": {
+      "required": [
+        "quote_id"
+      ],
+      "type": "object",
+      "properties": {
+        "quote_id": {
+          "type": "string"
+        },
+        "beneficiary_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "account_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "custom_audit_field": {
+          "$ref": "#/definitions/CustomAuditField"
+        }
+      }
+    },
+    "CreatePaymentWithTranstion": {
+      "required": [
+        "trade_id",
+        "payments"
+      ],
+      "type": "object",
+      "properties": {
+        "trade_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "payments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PaymentWithTransaction"
+          }
+        },
+        "custom_audit_field": {
+          "$ref": "#/definitions/CustomAuditField"
+        }
+      }
+    },
+    "PaymentWithTransaction": {
+      "required": [
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "beneficiary_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "account_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "beneficiary_remarks": {
+          "type": "string"
+        },
+        "purpose_of_payment": {
+          "type": "string"
+        }
+      }
+    },
+    "CreatePaymentWithoutTransaction": {
+      "required": [
+        "funding_currency",
+        "value_date",
+        "payments"
+      ],
+      "type": "object",
+      "properties": {
+        "funding_currency": {
+          "type": "string"
+        },
+        "value_date": {
+          "type": "string"
+        },
+        "payments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PaymentWithoutTransaction"
+          }
+        },
+        "funding": {
+          "$ref": "#/definitions/FundingPayee"
+        },
+        "custom_audit_field": {
+          "$ref": "#/definitions/CustomAuditField"
+        }
+      }
+    },
+    "PaymentWithoutTransaction": {
+      "required": [
+        "currency",
+        "amount",
+        "beneficiary_id"
+      ],
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "beneficiary_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "beneficiary_remarks": {
+          "type": "string"
+        },
+        "purpose_of_payment": {
+          "type": "string"
+        }
+      }
+    },
+    "FundingPayee": {
+      "type": "object",
+      "properties": {
+        "beneficiary_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "account_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "act_type": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateBeneficiaries": {
+      "required": [
+        "beneficiary",
+        "beneficiarybank"
+      ],
+      "type": "object",
+      "properties": {
+        "beneficiary": {
+          "$ref": "#/definitions/Beneficiaries",
+          "description": "Beneficiary Details"
+        },
+        "beneficiarybank": {
+          "$ref": "#/definitions/BeneficiariesBank",
+          "description": "Beneficiary Bank Details"
+        },
+        "intermediarybank": {
+          "$ref": "#/definitions/IntermediariesBank",
+          "description": "Intermediary Bank Details"
+        },
+        "furthercreditdetail": {
+          "$ref": "#/definitions/FurtherCreditDetail_beneficiaries",
+          "description": "Further Credit Details"
+        },
+        "byorderof": {
+          "$ref": "#/definitions/ByOrderOf_Beneficiaries",
+          "description": "By Order of Details"
+        },
+        "additional": {
+          "$ref": "#/definitions/Additional_beneficiaries"
+        },
+        "others": {
+          "$ref": "#/definitions/Others_beneficiaries",
+          "description": "Other Tab Details"
+        },
+        "custom_audit_field": {
+          "$ref": "#/definitions/CustomAuditField"
+        }
+      }
+    },
+    "Beneficiaries": {
+      "required": [
+        "beneficiary_currency",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "internal_reference": {
+          "description": "Internal Reference of the Wire Template",
+          "type": "string"
+        },
+        "beneficiary_name": {
+          "description": "Beneficiary Name of the Wire Template record",
+          "type": "string"
+        },
+        "beneficiary_first_name": {
+          "description": "First Name of the  Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_last_name": {
+          "description": "Last Name of the  Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_nickname": {
+          "description": "Nick Name of the  Beneficiary",
+          "type": "string"
+        },
+        "is_non_third_party": {
+          "description": "Setting this value as 1 will enable the non third party option for the beneficiaries",
+          "type": "boolean"
+        },
+        "beneficiary_address1": {
+          "description": "The details of the Beneficiary's First Address",
+          "type": "string"
+        },
+        "beneficiary_address2": {
+          "description": "The details of the Beneficiary's Second Address",
+          "type": "string"
+        },
+        "beneficiary_city": {
+          "description": "Name of the Beneficiary's City",
+          "type": "string"
+        },
+        "beneficiary_province": {
+          "description": "Name of the Beneficiary's Province",
+          "type": "string"
+        },
+        "beneficiary_country": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Name of the Beneficiary's Country"
+        },
+        "beneficiary_postcode": {
+          "description": "Beneficiary's Postal Code",
+          "type": "string"
+        },
+        "beneficiary_currency": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Name of the Beneficiary's Currency"
+        },
+        "beneficiary_accountcode": {
+          "description": "Beneficiary's Bank Account Code",
+          "type": "string"
+        },
+        "beneficiary_accounttype": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Beneficiary's Bank Account Type"
+        },
+        "beneficiary_email": {
+          "description": "Beneficiary's Email Address",
+          "type": "string"
+        },
+        "beneficiary_instructions": {
+          "description": "Special Instructions for Beneficiary",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Type of the Wire Template between 'Incoming' and 'Outgoing'"
+        },
+        "status": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Status of the Wire Template between 'Active' and 'Inactive'"
+        },
+        "beneficiary_sendingbank_instructions": {
+          "description": "Sender's Bank Instructions",
+          "type": "string"
+        },
+        "beneficiary_contact_number": {
+          "description": "Contact Number of the Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_contact_name": {
+          "description": "Conatct Name of the Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_individual_dob": {
+          "description": "Date of Birth of the Individual Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_individual_occupation": {
+          "description": "Occupation of the Individual Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_individual_id_type": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Individual ID type of the Beneficiary"
+        },
+        "beneficiary_individual_id_number": {
+          "description": "Individual Identification Number of the Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_account_name": {
+          "description": "Beneficiary's Bank Account Number",
+          "type": "string"
+        },
+        "beneficiary_charge_bearer": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Beneficiary's Charge Bearer between 'Ben', \"Our\" and \"Sha'"
+        },
+        "beneficiary_contact_phone": {
+          "description": "Beneficiary's Contact No. (Phone No.)",
+          "type": "string"
+        },
+        "beneficiary_is_resident": {
+          "description": "Setting this as 1 will update the Beneficiary as a resident option",
+          "type": "boolean"
+        },
+        "beneficiarybank_branch_name": {
+          "description": "The Branch Name of the Beneficiary Bank",
+          "type": "string"
+        }
+      }
+    },
+    "BeneficiariesBank": {
+      "required": [
+        "beneficiarybank_routingcode",
+        "beneficiarybank_routingcode_id",
+        "beneficiarybank_routingtype"
+      ],
+      "type": "object",
+      "properties": {
+        "beneficiarybank_routingcode": {
+          "description": "The Routing Code of the Beneficiary Bank",
+          "type": "string"
+        },
+        "beneficiarybank_routingcode_id": {
+          "format": "int32",
+          "description": "The Routing Code ID of the Beneficiary Bank",
+          "type": "integer"
+        },
+        "beneficiarybank_routingtype": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "The Routing Code Type of the Beneficiary Bank"
+        },
+        "beneficiarybank_bank_code": {
+          "description": "The Routing Code Type of the Beneficiary Bank",
+          "type": "string"
+        },
+        "beneficiarybank_name": {
+          "description": "The Name of the Beneficiary Bank",
+          "type": "string"
+        },
+        "beneficiarybank_address1": {
+          "description": "The details of the Beneficiary Bank's First Address",
+          "type": "string"
+        },
+        "beneficiarybank_address2": {
+          "description": "The details of the Beneficiary Bank's Second Address",
+          "type": "string"
+        },
+        "beneficiarybank_city": {
+          "description": "The name of the Beneficiary Bank's City",
+          "type": "string"
+        },
+        "beneficiarybank_province": {
+          "description": "The name of the Beneficiary Bank's Province",
+          "type": "string"
+        },
+        "beneficiarybank_country": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "The name of the Beneficiary Bank's Country"
+        },
+        "beneficiarybank_postcode": {
+          "description": "The Beneficiary Bank's Postal Code",
+          "type": "string"
+        },
+        "beneficiarybank_odfi_name": {
+          "description": "The Beneficiary Bank ODFI Name",
+          "type": "string"
+        },
+        "beneficiarybank_odfi_code": {
+          "description": "The Beneficiary Bank ODFI Code",
+          "type": "string"
+        },
+        "beneficiarybank_clearing_type": {
+          "description": "The Beneficiary Bank Clearing Type",
+          "type": "string"
+        },
+        "beneficiarybank_clearing_code": {
+          "description": "The Beneficiary Bank Clearing Code",
+          "type": "string"
+        },
+        "beneficiarybank_branch_name": {
+          "description": "The Beneficiary Bank Branch Name",
+          "type": "string"
+        }
+      }
+    },
+    "IntermediariesBank": {
+      "type": "object",
+      "properties": {
+        "interbank1_routingcode": {
+          "description": "The Intermediary Bank 1 Routing Code",
+          "type": "string"
+        },
+        "interbank1_routingcode_id": {
+          "format": "int32",
+          "description": "The Routing Code ID of Intermediary Bank 1",
+          "type": "integer"
+        },
+        "interbank1_routingtype": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "The Routing Type of Intermediary Bank 1"
+        },
+        "interbank1_bank_code": {
+          "description": "The Bank Code of Intermediary Bank 1",
+          "type": "string"
+        },
+        "interbank1_name": {
+          "description": "The Name of Intermediary Bank 1",
+          "type": "string"
+        },
+        "interbank1_address1": {
+          "description": "The Address 1 of Intermediary Bank 1",
+          "type": "string"
+        },
+        "interbank1_address2": {
+          "description": "The Address 2 of Intermediary Bank 1",
+          "type": "string"
+        },
+        "interbank1_city": {
+          "description": "The City of Intermediary Bank 1",
+          "type": "string"
+        },
+        "interbank1_province": {
+          "description": "The Province  of Intermediary Bank 1",
+          "type": "string"
+        },
+        "interbank1_country": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "The Country of Intermediary Bank 1"
+        },
+        "interbank1_postcode": {
+          "description": "The Province of Intermediary Bank 1",
+          "type": "string"
+        },
+        "interbank1_accountno": {
+          "description": "The Account No. of Intermediary Bank 1",
+          "type": "string"
+        },
+        "interbank1_is_interbank1": {
+          "type": "boolean"
+        }
+      }
+    },
+    "FurtherCreditDetail_beneficiaries": {
+      "type": "object",
+      "properties": {
+        "further_name": {
+          "type": "string"
+        },
+        "further_is_individual": {
+          "type": "boolean"
+        },
+        "further_isfurther": {
+          "type": "boolean"
+        },
+        "further_address1": {
+          "type": "string"
+        },
+        "further_address2": {
+          "type": "string"
+        },
+        "further_city": {
+          "type": "string"
+        },
+        "further_province": {
+          "type": "string"
+        },
+        "interbank1_accountno": {
+          "type": "string"
+        },
+        "further_country": {
+          "$ref": "#/definitions/IdValuePair"
+        },
+        "further_postcode": {
+          "type": "string"
+        },
+        "further_accountcode": {
+          "type": "string"
+        },
+        "further_first_name": {
+          "type": "string"
+        },
+        "further_last_name": {
+          "type": "string"
+        }
+      }
+    },
+    "ByOrderOf_Beneficiaries": {
+      "type": "object",
+      "properties": {
+        "byorderof_isbyorderof": {
+          "type": "boolean"
+        },
+        "byorderof_name": {
+          "type": "string"
+        },
+        "byorderof_is_individual": {
+          "type": "boolean"
+        },
+        "byorderof_address1": {
+          "type": "string"
+        },
+        "byorderof_address2": {
+          "type": "string"
+        },
+        "byorderof_city": {
+          "type": "string"
+        },
+        "byorderof_province": {
+          "type": "string"
+        },
+        "byorderof_accountno": {
+          "type": "string"
+        },
+        "byorderof_country": {
+          "$ref": "#/definitions/IdValuePair"
+        },
+        "byorderof_postcode": {
+          "type": "string"
+        },
+        "byorderof_account_type": {
+          "$ref": "#/definitions/IdValuePair"
+        },
+        "byorderof_id_type": {
+          "$ref": "#/definitions/IdValuePair"
+        },
+        "byorderof_id_number": {
+          "type": "string"
+        },
+        "byorderof_id_expiry_date": {
+          "type": "string"
+        },
+        "byorderof_first_name": {
+          "type": "string"
+        },
+        "byorderof_last_name": {
+          "type": "string"
+        }
+      }
+    },
+    "Additional_beneficiaries": {
+      "type": "object",
+      "properties": {
+        "is_individual": {
+          "description": "Set this as true if your beneficiary is an Individual Client",
+          "type": "boolean"
+        },
+        "execution_date": {
+          "type": "string"
+        },
+        "purpose_of_payment_id": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Unique ID of the Purpose of Payment"
+        },
+        "purpose_of_payment_details": {
+          "description": "The details of the selected  Purpose Of Payment record",
+          "type": "string"
+        },
+        "compliance_status": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "The compliance status of the wire template"
+        }
+      }
+    },
+    "Others_beneficiaries": {
+      "type": "object",
+      "properties": {
+        "is_other_check": {
+          "type": "boolean"
+        },
+        "other_1": {
+          "type": "string"
+        },
+        "other_2": {
+          "type": "string"
+        },
+        "other_3": {
+          "type": "string"
+        },
+        "other_4": {
+          "type": "string"
+        },
+        "other_5": {
+          "type": "string"
+        },
+        "byorderof_account_type": {
+          "$ref": "#/definitions/IdValuePair"
+        },
+        "byorderof_id_type": {
+          "$ref": "#/definitions/IdValuePair"
+        },
+        "byorderof_id_number": {
+          "type": "string"
+        },
+        "byorderof_id_expiry_date": {
+          "type": "string"
+        }
+      }
+    },
+    "IdValuePair": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "UpdateBeneficiaries": {
+      "required": [
+        "beneficiary",
+        "beneficiarybank"
+      ],
+      "type": "object",
+      "properties": {
+        "beneficiary": {
+          "$ref": "#/definitions/UpdateWireBeneficiaries",
+          "description": "Beneficiary Details"
+        },
+        "beneficiarybank": {
+          "$ref": "#/definitions/BeneficiariesBank",
+          "description": "Beneficiary Bank Details"
+        },
+        "intermediarybank": {
+          "$ref": "#/definitions/IntermediariesBank",
+          "description": "Intermediary Bank Details"
+        },
+        "furthercreditdetail": {
+          "$ref": "#/definitions/FurtherCreditDetail_beneficiaries",
+          "description": "Further Credit Details"
+        },
+        "byorderof": {
+          "$ref": "#/definitions/ByOrderOf_Beneficiaries"
+        },
+        "additional": {
+          "$ref": "#/definitions/Additional_beneficiaries"
+        },
+        "others": {
+          "$ref": "#/definitions/Others_beneficiaries"
+        },
+        "custom_audit_field": {
+          "$ref": "#/definitions/CustomAuditField"
+        }
+      }
+    },
+    "UpdateWireBeneficiaries": {
+      "required": [
+        "beneficiary_currency",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "beneficiary_id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "internal_reference": {
+          "description": "Internal Reference of the Wire Template",
+          "type": "string"
+        },
+        "beneficiary_name": {
+          "description": "Beneficiary Name of the Wire Template record",
+          "type": "string"
+        },
+        "beneficiary_first_name": {
+          "description": "First Name of the  Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_last_name": {
+          "description": "Last Name of the  Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_nickname": {
+          "description": "Nick Name of the  Beneficiary",
+          "type": "string"
+        },
+        "is_non_third_party": {
+          "description": "Setting this value as 1 will enable the non third party option for the beneficiaries",
+          "type": "boolean"
+        },
+        "beneficiary_address1": {
+          "description": "The details of the Beneficiary's First Address",
+          "type": "string"
+        },
+        "beneficiary_address2": {
+          "description": "The details of the Beneficiary's Second Address",
+          "type": "string"
+        },
+        "beneficiary_city": {
+          "description": "Name of the Beneficiary's City",
+          "type": "string"
+        },
+        "beneficiary_province": {
+          "description": "Name of the Beneficiary's Province",
+          "type": "string"
+        },
+        "beneficiary_country": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Name of the Beneficiary's Country"
+        },
+        "beneficiary_postcode": {
+          "description": "Beneficiary's Postal Code",
+          "type": "string"
+        },
+        "beneficiary_currency": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Name of the Beneficiary's Currency"
+        },
+        "beneficiary_accountcode": {
+          "description": "Beneficiary's Bank Account Code",
+          "type": "string"
+        },
+        "beneficiary_accounttype": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Beneficiary's Bank Account Type"
+        },
+        "beneficiary_email": {
+          "description": "Beneficiary's Email Address",
+          "type": "string"
+        },
+        "beneficiary_instructions": {
+          "description": "Special Instructions for Beneficiary",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Type of the Wire Template between 'Incoming' and 'Outgoing'"
+        },
+        "status": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Status of the Wire Template between 'Active' and 'Inactive'"
+        },
+        "beneficiary_sendingbank_instructions": {
+          "description": "Sender's Bank Instructions",
+          "type": "string"
+        },
+        "beneficiary_contact_number": {
+          "description": "Contact Number of the Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_contact_name": {
+          "description": "Conatct Name of the Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_individual_dob": {
+          "description": "Date of Birth of the Individual Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_individual_occupation": {
+          "description": "Occupation of the Individual Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_individual_id_type": {
+          "$ref": "#/definitions/IdValuePair",
+          "description": "Individual ID type of the Beneficiary"
+        },
+        "beneficiary_individual_id_number": {
+          "description": "Individual Identification Number of the Beneficiary",
+          "type": "string"
+        },
+        "beneficiary_account_name": {
+          "description": "Beneficiary's Bank Account Number",
+          "type": "string"
+        },
+        "beneficiary_charge_bearer": {
+          "$ref": "#/definitions/IdValuePair"
+        },
+        "beneficiary_contact_phone": {
+          "description": "Beneficiary's Contact No. (Phone No.)",
+          "type": "string"
+        },
+        "beneficiary_is_resident": {
+          "description": "Setting this as 1 will update the Beneficiary as a resident option",
+          "type": "boolean"
+        },
+        "beneficiarybank_branch_name": {
+          "description": "The Branch Name of the Beneficiary Bank",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
